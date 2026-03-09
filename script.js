@@ -22,7 +22,9 @@ function makeRays() {
         // left → right
         for (let i = 0; i < COUNT; i++) {
             const y = (canvas.height / COUNT) * i
-            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
+            const distFromCenter = Math.abs(y - CY)
+            const t = distFromCenter / (canvas.height / 2)
+            const color = `hsl(${100 + t * 60}, 100%, 70%)`
             result.push({ x: 0, y, vx: SPEED, vy: 0, color, alive: true })
             trails.push([])
         }
