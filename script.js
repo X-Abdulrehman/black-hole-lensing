@@ -3,7 +3,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d');
 const isMobile = window.innerWidth < 768;
 
-canvas.width  = isMobile ? window.innerWidth  : 800;
+canvas.width = isMobile ? window.innerWidth : 800;
 canvas.height = isMobile ? window.innerHeight : 700;
 
 const CX = canvas.width / 2;
@@ -11,21 +11,24 @@ const CY = canvas.height / 2;
 const BH_RADIUS = 40;
 const STRENGTH = 600;
 const SPEED = 5;
-const COUNT = 25;
+const COUNT = 5;
 
 const blackhole = { x: CX, y: CY, radius: BH_RADIUS };
 
 
 function makeRays() {
     const result = []
+
+    // left → right
     for (let i = 0; i < COUNT; i++) {
         const y = (canvas.height / COUNT) * i
-        const distFromcenter = Math.abs(y - CY)
-        const t = (distFromcenter / (canvas.height / 2))
-        const color = `hsl(${100 + t * 60}, 100%, 70%)`;
-        result.push({ x: 0, y, vx: SPEED, vy: 0, color, alive: true });
-        trails.push([]);
+        const distFromCenter = Math.abs(y - CY)
+        const t = distFromCenter / (canvas.height / 2)
+        const color = `hsl(${100 + t * 60}, 100%, 70%)`
+        result.push({ x: 0, y, vx: SPEED, vy: 0, color, alive: true })
+        trails.push([])
     }
+
     return result
 }
 
@@ -36,7 +39,7 @@ function stepRay(ray) {
     const dx = blackhole.x - ray.x
     const dy = blackhole.y - ray.y
     const distance = Math.hypot(dx, dy)
-    if (distance < blackhole.radius ) {
+    if (distance < blackhole.radius) {
         ray.alive = false
         return
     }
