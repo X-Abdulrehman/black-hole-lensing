@@ -11,7 +11,7 @@ const CY = canvas.height / 2;
 const BH_RADIUS = 40;
 const STRENGTH = 600;
 const SPEED = 5;
-const COUNT = 5;
+const COUNT = 25;
 
 const blackhole = { x: CX, y: CY, radius: BH_RADIUS };
 
