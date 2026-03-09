@@ -27,30 +27,6 @@ function makeRays() {
             trails.push([])
         }
 
-        // right → left
-        for (let i = 0; i < COUNT; i++) {
-            const y = (canvas.height / COUNT) * i
-            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
-            result.push({ x: canvas.width, y, vx: -SPEED, color,vy: 0, alive: true })
-            trails.push([])
-        }
-
-        // top → bottom
-        for (let i = 0; i < COUNT; i++) {
-            const x = (canvas.width / COUNT) * i
-            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
-            result.push({ x, y: 0, vx: 0, vy: SPEED,color, alive: true })
-            trails.push([])
-        }
-
-        // bottom → top
-        for (let i = 0; i < COUNT; i++) {
-            const x = (canvas.width / COUNT) * i
-            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
-            result.push({ x, y: canvas.height, vx: 0, vy: -SPEED,color, alive: true })
-            trails.push([])
-        }
-
         return result
     }
 
