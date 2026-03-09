@@ -17,20 +17,42 @@ const blackhole = { x: CX, y: CY, radius: BH_RADIUS };
 
 
 function makeRays() {
-    const result = []
+        const result = []
 
-    // left → right
-    for (let i = 0; i < COUNT; i++) {
-        const y = (canvas.height / COUNT) * i
-        const distFromCenter = Math.abs(y - CY)
-        const t = distFromCenter / (canvas.height / 2)
-        const color = `hsl(${100 + t * 60}, 100%, 70%)`
-        result.push({ x: 0, y, vx: SPEED, vy: 0, color, alive: true })
-        trails.push([])
+        // left → right
+        for (let i = 0; i < COUNT; i++) {
+            const y = (canvas.height / COUNT) * i
+            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
+            result.push({ x: 0, y, vx: SPEED, vy: 0, color, alive: true })
+            trails.push([])
+        }
+
+        // right → left
+        for (let i = 0; i < COUNT; i++) {
+            const y = (canvas.height / COUNT) * i
+            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
+            result.push({ x: canvas.width, y, vx: -SPEED, color,vy: 0, alive: true })
+            trails.push([])
+        }
+
+        // top → bottom
+        for (let i = 0; i < COUNT; i++) {
+            const x = (canvas.width / COUNT) * i
+            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
+            result.push({ x, y: 0, vx: 0, vy: SPEED,color, alive: true })
+            trails.push([])
+        }
+
+        // bottom → top
+        for (let i = 0; i < COUNT; i++) {
+            const x = (canvas.width / COUNT) * i
+            const color = `hsl(${Math.random() * 360}, 100%, 40%)`
+            result.push({ x, y: canvas.height, vx: 0, vy: -SPEED,color, alive: true })
+            trails.push([])
+        }
+
+        return result
     }
-
-    return result
-}
 
 function stepRay(ray) {
     if (!ray.alive) {
